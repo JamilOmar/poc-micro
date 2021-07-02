@@ -1,0 +1,6 @@
+{
+    "name": "beta-api",
+    "script": "./dist/index.js",
+    "instances": "2",
+    "log_file": "./beta-api.log"
+}

@@ -1,0 +1,25 @@
+    services: 
+      alpha-api: 
+        build: 
+          context: ./packages/api/alpha
+        environment: 
+          - PORT=8000
+        container_name: alpha-api
+        expose: 
+          - 8000
+        ports: 
+          - "8000:8000"
+        tty: true
+      beta-api: 
+        build: 
+          context: ./packages/api/beta
+        environment: 
+          - PORT=8001
+        container_name: beta-api
+        expose: 
+          - 8001
+        ports: 
+          - "8001:8001"
+        tty: true
+    version: "3"
+    
