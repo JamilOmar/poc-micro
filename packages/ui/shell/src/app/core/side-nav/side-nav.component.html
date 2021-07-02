@@ -3,26 +3,21 @@
       <button mat-icon-button>
         <mat-icon (click)="sidenav.toggle()">menu</mat-icon>
       </button>
-      <h1>Demo CRM</h1>
+      <h1>{{info.title}}</h1>
       <span class="menu-spacer"></span>
       <div>
-        <a mat-button [routerLink]="'/orders'"> Orders </a>
-        <a mat-button [routerLink]="'/users'"> Users </a>
-        <a mat-button [routerLink]="'/admin'"> Admin </a>
+        <a  mat-button *ngFor="let link of links" routerLink="{{link.url}}"> {{link.name}}</a>   
       </div>
     </mat-toolbar-row>
   
     <mat-toolbar-row>
-        <span style="font-size: 12px;">Welcome to the Demo CRM</span>
+        <span style="font-size: 12px;">{{info.description}}</span>
       </mat-toolbar-row>
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav #sidenav>
       <mat-nav-list>
-  
-        <a mat-list-item [routerLink]="'/orders'"> Accounts </a>
-        <a mat-list-item [routerLink]="'/users'"> Users </a>
-        <a mat-list-item [routerLink]="'/admin'"> Admin </a>
+        <a mat-list-item *ngFor="let link of links" routerLink="{{link.url}}"> {{link.name}}</a>   
         <a mat-list-item (click)="sidenav.toggle()" href="" mat-list-item>Close</a>
   
       </mat-nav-list>

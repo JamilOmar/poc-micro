@@ -27,15 +27,21 @@ module.exports = {
         // For remotes (please adjust)
         // name: "alpha",
         // filename: "remoteEntry.js",
-         exposes: {
-             './Component': './/src/app/app.component.ts',
-         },        
+        // exposes: {
+        //     './Component': './/src/app/app.component.ts',
+        // },        
         
         // For hosts (please adjust)
         // remotes: {
         //     "mfe1": "mfe1@http://localhost:3000/remoteEntry.js",
 
         // },
+        name: "alpha",
+        filename: "remoteEntry.js",  // 2-3K w/ Meta Data
+        exposes: {
+            './StoresModule': './src/app/stores/stores.module.ts',
+            './AdminModule': './src/app/admin/admin.module.ts',
+        },        
 
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 

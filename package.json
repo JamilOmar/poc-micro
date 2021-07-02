@@ -1,6 +1,15 @@
 {
   "name": "root",
   "private": true,
+  "scripts": {
+    "prerelease": "npm run build:full",
+    "release": "lerna version && lerna publish from-git",
+    "postinstall": "lerna bootstrap",
+    "build": "lerna run build --sort",
+    "build:full": "lerna link && npm run build",
+    "clean": "lerna run clean",
+    "start:ui" :"concurrently \"lerna run --scope shell-ui start:ui\" \"lerna run --scope alpha-ui start:ui\" \"lerna run --scope beta-ui start:ui\" "
+  },
   "devDependencies": {
     "lerna": "^3.22.1"
   },
