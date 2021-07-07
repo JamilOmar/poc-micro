@@ -1,7 +1,12 @@
 {
   "packages": [
-    "packages/api/*",
-    "packages/ui/*"
+    "packages/api/alpha",
+    "packages/api/beta",
+    "packages/api/shell",
+    "packages/ui/core",
+    "packages/ui/alpha",
+    "packages/ui/beta",
+    "packages/ui/shell"
   ],
   "version": "independent",
   "command": {

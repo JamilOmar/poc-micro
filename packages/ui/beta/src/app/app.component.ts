@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'beta';
+  links:any =[];
+  info:any ={};
+  constructor() { }
+
+  ngOnInit(): void {
+    this.info ={
+      title: 'Beta Service',
+      description:'Welcome to the Beta Service'
+
+    }
+    this.links = [{
+      url:['/support'] , name:'Support'},
+      {url:['/admin'] , name:'Admin'},
+    ]
+  }
 }

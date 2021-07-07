@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-
+import {CoreUiModule} from 'core-ui';
 @NgModule({
   declarations: [
     AppComponent
@@ -16,7 +16,8 @@ import { FormlyMaterialModule } from '@ngx-formly/material';
     AppRoutingModule,
     ReactiveFormsModule,
     FormlyModule.forRoot({ extras: { lazyRender: true } }),
-    FormlyMaterialModule
+    FormlyMaterialModule,
+    CoreUiModule
   ],
   providers: [],
   bootstrap: [AppComponent]

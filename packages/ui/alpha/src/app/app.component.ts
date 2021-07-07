@@ -7,4 +7,19 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'alpha';
+  links:any =[];
+  info:any ={};
+  constructor() { }
+
+  ngOnInit(): void {
+    this.info ={
+      title: 'Alpha Service',
+      description:'Welcome to the Alpha Service'
+
+    }
+    this.links = [{
+      url:['/stores'] , name:'Stores'},
+      {url:['/admin'] , name:'Admin'},
+    ]
+  }
 }

@@ -23,7 +23,12 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      
+      name: "beta",
+      filename: "remoteEntry.js",  // 2-3K w/ Meta Data
+      exposes: {
+          './SupportModule': './src/app/support/support.module.ts',
+          './AdminModule': './src/app/admin/admin.module.ts',
+      },        
         // For remotes (please adjust)
         // name: "beta",
         // filename: "remoteEntry.js",

@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "start:ui" : "ng serve -o --port 4200",
+    "start:ui": "ng serve -o --port 8000",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -24,13 +24,12 @@
     "@angular/platform-browser-dynamic": "~12.1.0",
     "@angular/router": "~12.1.0",
     "@ng-bootstrap/schematics": "^2.0.0-alpha.1",
-    "angular-font-awesome": "^3.1.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.1.0",
+    "@angular-devkit/build-angular": "^12.1.1",
     "@angular/cli": "~12.1.0",
     "@angular/compiler-cli": "~12.1.0",
     "@types/jasmine": "~3.6.0",

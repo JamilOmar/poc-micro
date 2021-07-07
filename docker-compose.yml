@@ -3,23 +3,61 @@
         build: 
           context: ./packages/api/alpha
         environment: 
-          - PORT=8000
+          - PORT=7001
         container_name: alpha-api
         expose: 
-          - 8000
+          - 7001
         ports: 
-          - "8000:8000"
+          - "7001:7001"
         tty: true
       beta-api: 
         build: 
           context: ./packages/api/beta
         environment: 
-          - PORT=8001
+          - PORT=7002
         container_name: beta-api
         expose: 
-          - 8001
+          - 7002
         ports: 
-          - "8001:8001"
+          - "7002:7002"
+        tty: true
+      shell-api: 
+          build: 
+            context: ./packages/api/shell
+          environment: 
+            - PORT=7000
+          container_name: shell-api
+          expose: 
+            - 7000
+          ports: 
+            - "7000:7000"
+          tty: true
+      alpha-ui: 
+          build: 
+            context: ./packages/ui/alpha
+          container_name: alpha-ui
+          expose: 
+            - 8001
+          ports: 
+            - "8001:80"
+          tty: true
+      beta-ui: 
+        build: 
+          context: ./packages/ui/beta
+        container_name: beta-ui
+        expose: 
+          - 8002
+        ports: 
+          - "8002:80"
+        tty: true
+      shell-ui: 
+        build: 
+          context: ./packages/ui/shell
+        container_name: shell-ui
+        expose: 
+          - 8000
+        ports: 
+          - "8000:80"
         tty: true
     version: "3"
     
