@@ -12,24 +12,6 @@ const routes: Routes = [{ path: 'orders', loadChildren: () => import('./orders/o
 { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
 { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
 {
-  path: 'alpha',
-  loadChildren: () => loadRemoteModule({
-      remoteEntry: URL_ALPHA,
-      remoteName: 'alpha',
-      exposedModule: './StoresModule'
-    })
-    .then(m => m.StoresModule) 
-},
-{
-  path: 'alpha-admin',
-  loadChildren: () => loadRemoteModule({
-      remoteEntry: URL_ALPHA,
-      remoteName: 'alpha',
-      exposedModule: './AdminModule'
-    })
-    .then(m => m.AdminModule) 
-},
-{
   path: 'beta',
   loadChildren: () => loadRemoteModule({
       remoteEntry: URL_BETA,

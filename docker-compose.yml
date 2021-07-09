@@ -1,63 +1,98 @@
-    services: 
-      alpha-api: 
-        build: 
-          context: ./packages/api/alpha
-        environment: 
-          - PORT=7001
-        container_name: alpha-api
-        expose: 
-          - 7001
-        ports: 
-          - "7001:7001"
-        tty: true
-      beta-api: 
-        build: 
-          context: ./packages/api/beta
-        environment: 
-          - PORT=7002
-        container_name: beta-api
-        expose: 
-          - 7002
-        ports: 
-          - "7002:7002"
-        tty: true
-      shell-api: 
-          build: 
-            context: ./packages/api/shell
-          environment: 
-            - PORT=7000
-          container_name: shell-api
-          expose: 
-            - 7000
-          ports: 
-            - "7000:7000"
-          tty: true
-      alpha-ui: 
-          build: 
-            context: ./packages/ui/alpha
-          container_name: alpha-ui
-          expose: 
-            - 8001
-          ports: 
-            - "8001:80"
-          tty: true
-      beta-ui: 
-        build: 
-          context: ./packages/ui/beta
-        container_name: beta-ui
-        expose: 
-          - 8002
-        ports: 
-          - "8002:80"
-        tty: true
-      shell-ui: 
-        build: 
-          context: ./packages/ui/shell
-        container_name: shell-ui
-        expose: 
-          - 8000
-        ports: 
-          - "8000:80"
-        tty: true
-    version: "3"
-    
+version: "3"
+volumes: 
+  postgres_data:
+      driver: local
+services: 
+  alpha-api: 
+    build: 
+      context: ./packages/api/alpha
+    container_name: alpha-api
+    environment: 
+      - PORT=7001
+    expose: 
+      - 7001
+    ports: 
+      - "7001:7001"
+    tty: true
+  alpha-ui: 
+    build: 
+      context: ./packages/ui/alpha
+    container_name: alpha-ui
+    expose: 
+      - 8001
+    ports: 
+      - "8001:80"
+    tty: true
+  beta-api: 
+    build: 
+      context: ./packages/api/beta
+    container_name: beta-api
+    environment: 
+      - PORT=7002
+    expose: 
+      - 7002
+    ports: 
+      - "7002:7002"
+    tty: true
+  beta-ui: 
+    build: 
+      context: ./packages/ui/beta
+    container_name: beta-ui
+    expose: 
+      - 8002
+    ports: 
+      - "8002:80"
+    tty: true
+  
+  shell-api: 
+    build: 
+      context: ./packages/api/shell
+    container_name: shell-api
+    environment: 
+      - PORT=7000
+    expose: 
+      - 7000
+    ports: 
+      - 7000:7000
+    tty: true
+  shell-ui: 
+    build: 
+      context: ./packages/ui/shell
+    container_name: shell-ui
+    expose: 
+      - 8000
+    ports: 
+      - "8000:80"
+    tty: true
+
+  postgres:
+      image: postgres
+      volumes:
+        - postgres_data:/var/lib/postgresql/data
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: postgres
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_SCHEMA: public
+        DB_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: Pa55w0rd
+        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
+        #JDBC_PARAMS: "ssl=true"
+      volumes:
+        - ./infra/keycloak/realm-test.json:/tmp/realm-test.json
+      ports:
+        - 8080:8080
+      depends_on:
+        - postgres
+
+
+
+  

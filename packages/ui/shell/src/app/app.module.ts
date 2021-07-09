@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,12 +10,16 @@ import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {CoreUiModule} from 'core-ui';
+import { initializeApp } from './app.initializer';
+import { HttpClientModule } from '@angular/common/http';
+import { RouteLoaderService } from './services/route-loader.service';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatSliderModule,
@@ -24,9 +28,16 @@ import {CoreUiModule} from 'core-ui';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    CoreUiModule
+    CoreUiModule.forRoot({appConf:APP_CONFIG})
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory:initializeApp,
+      deps: [RouteLoaderService],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
