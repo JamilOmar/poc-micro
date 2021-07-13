@@ -10,3 +10,7 @@ https://wkrzywiec.medium.com/create-and-configure-keycloak-oauth-2-0-authorizati
 https://stackoverflow.com/questions/60766292/how-to-get-keycloak-to-export-realm-users-and-then-exit
 # How to delete all the containers from docker
 https://stackoverflow.com/questions/44785585/docker-how-to-delete-all-local-docker-images
+
+
+# For UI Auth
+- Create a public client per front end
