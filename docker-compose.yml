@@ -2,11 +2,13 @@ version: "3"
 volumes: 
   postgres_data:
       driver: local
+  mongodb_data:
+      driver: local
 services: 
   alpha-api: 
     build: 
       context: ./packages/api/alpha
-    container_name: alpha-api
+    container_name: poc-alpha-api
     environment: 
       - PORT=7001
     expose: 
@@ -17,7 +19,7 @@ services:
   alpha-ui: 
     build: 
       context: ./packages/ui/alpha
-    container_name: alpha-ui
+    container_name: poc-alpha-ui
     expose: 
       - 8001
     ports: 
@@ -26,7 +28,7 @@ services:
   beta-api: 
     build: 
       context: ./packages/api/beta
-    container_name: beta-api
+    container_name: poc-beta-api
     environment: 
       - PORT=7002
     expose: 
@@ -37,7 +39,7 @@ services:
   beta-ui: 
     build: 
       context: ./packages/ui/beta
-    container_name: beta-ui
+    container_name: poc-beta-ui
     expose: 
       - 8002
     ports: 
@@ -47,7 +49,7 @@ services:
   shell-api: 
     build: 
       context: ./packages/api/shell
-    container_name: shell-api
+    container_name: poc-shell-api
     environment: 
       - PORT=7000
     expose: 
@@ -58,7 +60,7 @@ services:
   shell-ui: 
     build: 
       context: ./packages/ui/shell
-    container_name: shell-ui
+    container_name: poc-shell-ui
     expose: 
       - 8000
     ports: 
@@ -67,14 +69,26 @@ services:
 
   postgres:
       image: postgres
+      container_name: poc-postgres
       volumes:
         - postgres_data:/var/lib/postgresql/data
       environment:
         POSTGRES_DB: keycloak
         POSTGRES_USER: keycloak
         POSTGRES_PASSWORD: password
+  mongodb:
+      image: mongo:latest
+      container_name: poc-mongodb
+      environment:
+        MONGO_INITDB_ROOT_USERNAME: root
+        MONGO_INITDB_ROOT_PASSWORD: password
+      ports:
+        - 27017:27017
+      volumes:
+        - mongodb_data:/data/db
   keycloak:
       image: quay.io/keycloak/keycloak:latest
+      container_name: poc-keycloak
       environment:
         DB_VENDOR: POSTGRES
         DB_ADDR: postgres
@@ -84,15 +98,9 @@ services:
         DB_PASSWORD: password
         KEYCLOAK_USER: admin
         KEYCLOAK_PASSWORD: Pa55w0rd
-        # Uncomment the line below if you want to specify JDBC parameters. The parameter below is just an example, and it shouldn't be used in production without knowledge. It is highly recommended that you read the PostgreSQL JDBC driver documentation in order to use it.
-        #JDBC_PARAMS: "ssl=true"
       volumes:
-        - ./infra/keycloak/realm-test.json:/tmp/realm-test.json
+        - ./infra/keycloak:/tmp
       ports:
         - 8080:8080
       depends_on:
         - postgres
-
-
-
-  

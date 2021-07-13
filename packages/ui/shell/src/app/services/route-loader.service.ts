@@ -36,8 +36,8 @@ export class RouteLoaderService {
   },
       */
 
-    const apiRoutes =  (await this.loadFromService()).toPromise() as any;
-    
+    const apiRoutes =  await this.loadFromService() as any;
+    console.log(apiRoutes)
     for (let apiRoute of apiRoutes) {
       const remoteRoute = {
         path: apiRoute.path,
@@ -55,7 +55,7 @@ export class RouteLoaderService {
     return;
   }
   async loadNavigation(localRoutes:any) {
-    const apiRoutes =  (await this.loadFromService()).toPromise() as any;
+    const apiRoutes =  await this.loadFromService() as any;
     const appRoutes=[];
     for (let apiRoute of apiRoutes) {
      
@@ -74,6 +74,6 @@ export class RouteLoaderService {
         catchError((err, caught) => {
           return of([]);
         })
-      )
+      ).toPromise()
   }
 }

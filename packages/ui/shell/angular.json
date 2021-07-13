@@ -37,7 +37,8 @@
               ],
               "scripts": [],
               "extraWebpackConfig": "webpack.config.js",
-              "commonChunk": false
+              "commonChunk": false,
+              "allowedCommonJsDependencies": ["keycloak-js"]
             },
             "configurations": {
               "production": {

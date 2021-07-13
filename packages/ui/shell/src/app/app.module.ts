@@ -9,13 +9,16 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {CoreUiModule} from 'core-ui';
+import {ConfigService, CoreUiModule} from 'core-ui';
 import { initializeApp } from './app.initializer';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteLoaderService } from './services/route-loader.service';
+import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -28,13 +31,14 @@ import { RouteLoaderService } from './services/route-loader.service';
     MatIconModule,
     MatButtonModule,
     MatListModule,
+    KeycloakAngularModule,
     CoreUiModule.forRoot({appConf:APP_CONFIG})
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
       useFactory:initializeApp,
-      deps: [RouteLoaderService],
+      deps: [ConfigService, RouteLoaderService , KeycloakService],
       multi: true
     }
   ],

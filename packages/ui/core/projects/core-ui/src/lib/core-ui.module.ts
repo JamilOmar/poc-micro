@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { APP_CONF ,ConfigService, CoreUiModuleSettings } from './services';
+import { KeycloakAngularModule } from 'keycloak-angular';
 @NgModule({
   declarations: [
     CoreUiComponent,
@@ -25,7 +26,8 @@ import { APP_CONF ,ConfigService, CoreUiModuleSettings } from './services';
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    KeycloakAngularModule
   ],
   exports: [
     CoreUiComponent,
