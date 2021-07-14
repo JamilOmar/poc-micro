@@ -1,7 +1,4 @@
 module.exports = {
-    shell: {
-      url: process.env.SHELL_API_URL
-    },
     auth:{
       url: process.env.AUTH_URL || 'http://localhost:8080' + '/auth',
       realm: process.env.AUTH_REALM || 'poc',

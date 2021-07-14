@@ -18,4 +18,12 @@ export class ShellService {
     const url = urljoin(this.baseUrl,'modules');
     return this.http.get(url);
   }
+  saveModule(module:any){
+    const url = urljoin(this.baseUrl,'modules');
+    return this.http.post(url,module);
+  }
+  deleteModule(id:string){
+    const url = urljoin(this.baseUrl,'modules',id);
+    return this.http.delete(url);
+  }
 }

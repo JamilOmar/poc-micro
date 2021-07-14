@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { loadRemoteModule } from '@angular-architects/module-federation';
+import { AuthGuard } from 'core-ui';
 const URL_ALPHA = 'http://localhost:8001/remoteEntry.js';
 const URL_BETA = 'http://localhost:8002/remoteEntry.js';
-const routes: Routes = [{ path: 'orders',loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
+const routes: Routes = [{ path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
 {
   path: '',
   redirectTo: 'orders',
