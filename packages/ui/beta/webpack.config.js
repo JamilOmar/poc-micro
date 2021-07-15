@@ -2,11 +2,13 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
-
+const webpack  = require('webpack');
+require('dotenv').config()
+const config = require('config');
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   path.join(__dirname, 'tsconfig.json'),
-  [/* mapped paths to share */]);
+  ['core-ui']);
 
 module.exports = {
   output: {
@@ -22,6 +24,9 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      APP_CONFIG:JSON.stringify(config ||{})
+    }),
     new ModuleFederationPlugin({
       name: "beta",
       filename: "remoteEntry.js",  // 2-3K w/ Meta Data
@@ -47,6 +52,9 @@ module.exports = {
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "bootstrap": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "font-awesome": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+        
 
           ...sharedMappings.getDescriptors()
         })

@@ -14,3 +14,9 @@ https://stackoverflow.com/questions/44785585/docker-how-to-delete-all-local-dock
 
 # For UI Auth
 - Create a public client per front end
+
+
+
+https://www.angulararchitects.io/aktuelles/the-microfrontend-revolution-module-federation-in-webpack-5/
+
+https://medium.com/codingtown/micro-frontends-mystery-8b51b6e2f7f9
