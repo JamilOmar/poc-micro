@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {KeycloakService} from 'keycloak-angular';
 import {KeycloakProfile} from 'keycloak-js';
-import { RouteLoaderService } from './services/route-loader.service';
+import {RouteLoaderService} from './services/route-loader.service';
 
 @Component({
   selector: 'app-root',
@@ -12,10 +12,7 @@ export class AppComponent {
   title = 'shell';
   links: any = [];
   info: any = {};
-  constructor(
-    
-    private readonly routeLoaderService : RouteLoaderService,
-    private readonly keycloak: KeycloakService) {}
+  constructor(private readonly routeLoaderService: RouteLoaderService, private readonly keycloak: KeycloakService) {}
   public isLoggedIn = false;
   public userProfile: KeycloakProfile | null = null;
   async ngOnInit() {
@@ -23,7 +20,7 @@ export class AppComponent {
       title: 'Demo CRM',
       description: 'Welcome to the Demo CRM'
     };
-    this.links = await this.routeLoaderService.loadNavigation( [
+    this.links = await this.routeLoaderService.loadNavigation([
       {
         url: ['/orders'],
         name: 'Orders'

@@ -54,7 +54,8 @@ module.exports = {
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "bootstrap": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "font-awesome": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-        
+          "keycloak-angular": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "keycloak-js": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()
         })
