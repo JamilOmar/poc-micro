@@ -1,35 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { loadRemoteModule } from '@angular-architects/module-federation';
-const URL_ALPHA = 'http://localhost:8001/remoteEntry.js';
-const URL_BETA = 'http://localhost:8002/remoteEntry.js';
-const routes: Routes = [{ path: 'orders', loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule) },
+const routes: Routes = [
 {
   path: '',
-  redirectTo: 'orders',
+  redirectTo: 'admin',
   pathMatch: 'full'
 
 },
 { path: 'users', loadChildren: () => import('./users/users.module').then(m => m.UsersModule) },
-{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
-{
-  path: 'beta',
-  loadChildren: () => loadRemoteModule({
-      remoteEntry: URL_BETA,
-      remoteName: 'beta',
-      exposedModule: './SupportModule'
-    })
-    .then(m => m.SupportModule) 
-},
-{
-  path: 'beta-admin',
-  loadChildren: () => loadRemoteModule({
-      remoteEntry: URL_BETA,
-      remoteName: 'beta',
-      exposedModule: './AdminModule'
-    })
-    .then(m => m.AdminModule) 
-},
+{ path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }
 ];
 
 

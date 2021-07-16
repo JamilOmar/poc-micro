@@ -11,33 +11,7 @@ export class RouteLoaderService {
   constructor(private shellService: ShellService, private router: Router) {}
   async loadModules() {
     const appRoutes = [...this.router.config];
-
-    //TODO: fix any
-    /** 
-       * 
-       * 
-       {
-    path: 'alpha',
-    loadChildren: () => loadRemoteModule({
-        remoteEntry: URL_ALPHA,
-        remoteName: 'alpha',
-        exposedModule: './StoresModule'
-      })
-      .then(m => m.StoresModule) 
-  },
-  {
-    path: 'alpha-admin',
-    loadChildren: () => loadRemoteModule({
-        remoteEntry: URL_ALPHA,
-        remoteName: 'alpha',
-        exposedModule: './AdminModule'
-      })
-      .then(m => m.AdminModule) 
-  },
-      */
-
     const apiRoutes =  await this.loadFromService() as any;
-    console.log(apiRoutes)
     for (let apiRoute of apiRoutes) {
       const remoteRoute = {
         path: apiRoute.path,
@@ -50,7 +24,6 @@ export class RouteLoaderService {
       };
       appRoutes.push(remoteRoute);
     }
-    console.log(appRoutes)
     this.router.resetConfig(appRoutes);
     return;
   }

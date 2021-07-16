@@ -2,7 +2,9 @@ const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPl
 const mf = require("@angular-architects/module-federation/webpack");
 const path = require("path");
 const share = mf.share;
-
+const webpack  = require('webpack');
+require('dotenv').config()
+const config = require('config');
 const sharedMappings = new mf.SharedMappings();
 sharedMappings.register(
   path.join(__dirname, 'tsconfig.json'),
@@ -22,6 +24,9 @@ module.exports = {
     }
   },
   plugins: [
+    new webpack.DefinePlugin({
+      APP_CONFIG:JSON.stringify(config ||{})
+    }),
     new ModuleFederationPlugin({
       
         // For remotes (please adjust)

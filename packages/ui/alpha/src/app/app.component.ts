@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {AuthService} from 'core-ui'
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,11 @@ export class AppComponent {
   title = 'alpha';
   links:any =[];
   info:any ={};
-  constructor() { }
+  constructor( readonly authService: AuthService) {}
+  public isLoggedIn = false;
+  public userProfile: any = null;
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.info ={
       title: 'Alpha Service',
       description:'Welcome to the Alpha Service'
@@ -21,5 +24,11 @@ export class AppComponent {
       url:['/stores'] , name:'Stores'},
       {url:['/admin'] , name:'Admin'},
     ]
+    this.isLoggedIn = await this.authService.isLoggedIn();
+    if (!this.isLoggedIn) {
+      await this.authService.login();
+    } else {
+      this.userProfile = await this.authService.loadUserProfile();
+    }
   }
 }

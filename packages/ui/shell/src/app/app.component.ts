@@ -20,13 +20,8 @@ export class AppComponent {
       description: 'Welcome to the Demo CRM'
     };
     this.links = await this.routeLoaderService.loadNavigation([
-      {
-        url: ['/orders'],
-        name: 'Orders'
-      },
-      {url: ['/users'], name: 'Users'},
       {url: ['/admin'], name: 'Admin'},
-      {url: ['/beta'], name: 'Beta'}
+      {url: ['/users'], name: 'Users'},
     ]);
     this.isLoggedIn = await this.authService.isLoggedIn();
     if (!this.isLoggedIn) {

@@ -1,12 +1,11 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { KeycloakService } from 'keycloak-angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyMaterialModule } from '@ngx-formly/material';
-import {ConfigService, CoreUiModule} from 'core-ui';
+import {AuthService,ConfigService, CoreUiModule} from 'core-ui';
 import { initializeApp } from './app.initializer';
 @NgModule({
   declarations: [
@@ -24,7 +23,7 @@ import { initializeApp } from './app.initializer';
     {
       provide: APP_INITIALIZER,
       useFactory:initializeApp,
-      deps: [ConfigService , KeycloakService],
+      deps: [ConfigService , AuthService],
       multi: true
     }
   ],
