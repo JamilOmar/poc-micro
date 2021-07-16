@@ -16,6 +16,8 @@ services:
     ports: 
       - "7001:7001"
     tty: true
+    depends_on:
+      - mongodb
   alpha-ui: 
     build: 
       context: ./packages/ui/alpha
@@ -36,6 +38,8 @@ services:
     ports: 
       - "7002:7002"
     tty: true
+    depends_on:
+      - mongodb
   beta-ui: 
     build: 
       context: ./packages/ui/beta
@@ -57,6 +61,8 @@ services:
     ports: 
       - 7000:7000
     tty: true
+    depends_on:
+      - mongodb
   shell-ui: 
     build: 
       context: ./packages/ui/shell

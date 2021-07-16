@@ -17,7 +17,7 @@ export class ShellApplication extends BootMixin(
 ) {
   constructor(options: ApplicationConfig = {}) {
     super(options);
-
+    this.bind('datasources.config.Shell').to(options.db);
     // Set up the custom sequence
     this.sequence(MySequence);
 

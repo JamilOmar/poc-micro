@@ -12,6 +12,7 @@ const config = {
 // application is stopped. This allows the application to be shut down
 // gracefully. The `stop()` method is inherited from `juggler.DataSource`.
 // Learn more at https://loopback.io/doc/en/lb4/Life-cycle.html
+let singletonInstance: any | null = null;
 @lifeCycleObserver('datasource')
 export class ShellDataSource extends juggler.DataSource
   implements LifeCycleObserver {
@@ -22,6 +23,10 @@ export class ShellDataSource extends juggler.DataSource
     @inject('datasources.config.Shell', {optional: true})
     dsConfig: object = config,
   ) {
+    if (singletonInstance) {
+      return singletonInstance;
+    }
     super(dsConfig);
+    singletonInstance = this;
   }
 }
