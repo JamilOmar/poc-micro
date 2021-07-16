@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
+import {AuthService} from 'core-ui';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +10,9 @@ export class AppComponent {
   title = 'beta';
   links: any = [];
   info: any = {};
-  constructor(private readonly keycloak: KeycloakService) {}
+  constructor(private readonly authService: AuthService) {}
   public isLoggedIn = false;
-  public userProfile: KeycloakProfile | null = null;
+  public userProfile: any = null;
 
   async ngOnInit() {
     this.info = {
@@ -27,11 +26,11 @@ export class AppComponent {
       },
       {url: ['/admin'], name: 'Admin'}
     ];
-    this.isLoggedIn = await this.keycloak.isLoggedIn();
+    this.isLoggedIn = await this.authService.isLoggedIn();
     if (!this.isLoggedIn) {
-      await this.keycloak.login();
+      await this.authService.login();
     } else {
-      this.userProfile = await this.keycloak.loadUserProfile();
+      this.userProfile = await this.authService.loadUserProfile();
     }
   }
 }

@@ -1,9 +1,11 @@
 import { ConfigService } from "../config";
 import { KeycloakService } from "keycloak-angular";
+import { AuthService } from "../auth/auth.service";
 
-export async function authInitializer(
+export async function initializer(
   configService:  ConfigService,
-  keycloak: KeycloakService
+  authService:   AuthService
+
   ) {
 
 
@@ -17,7 +19,7 @@ export async function authInitializer(
           clientId: 'frontend',
         }
        */
-      return keycloak.init({
+      return authService.init({
         config
       });
     

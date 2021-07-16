@@ -8,8 +8,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {ConfigService, CoreUiModule} from 'core-ui';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
+import {AuthService,ConfigService, CoreUiModule} from 'core-ui';
 import { initializeApp } from './app.initializer';
 @NgModule({
   declarations: [
@@ -24,14 +23,13 @@ import { initializeApp } from './app.initializer';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    KeycloakAngularModule,
     CoreUiModule.forRoot({appConf:APP_CONFIG})
   ],
   providers: [
     {
       provide: APP_INITIALIZER,
       useFactory:initializeApp,
-      deps: [ConfigService , KeycloakService],
+      deps: [ConfigService , AuthService],
       multi: true
     }
   ],

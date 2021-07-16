@@ -9,16 +9,20 @@ export class AuthService{
 
     }
 
+    async init(options:any){
+        return this.client.init(options)
+    }
+
     async login(){
-        return await this.client.login();
+        return  this.client.login();
     }
     async logout(){
-        return await this.client.logout();
+        return  this.client.logout();
     }
     async isLoggedIn(){
-        return await this.client.isLoggedIn();
+        return  this.client.isLoggedIn();
     }
     async loadUserProfile(){
-        return await this.client.loadUserProfile();
+        return  this.client.loadUserProfile();
     }
 }

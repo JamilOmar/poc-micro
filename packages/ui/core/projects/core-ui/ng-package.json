@@ -3,5 +3,10 @@
   "dest": "../../dist/core-ui",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies":[
+    "keycloak-angular",
+    "keycloak-js"
+    
+  ]
 }

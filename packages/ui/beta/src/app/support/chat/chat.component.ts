@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { KeycloakService } from 'keycloak-angular';
-import { KeycloakProfile } from 'keycloak-js';
+import { Component, Injector, OnInit } from '@angular/core';
+import {AuthService} from 'core-ui';
 
 @Component({
   selector: 'app-chat',
@@ -9,12 +8,11 @@ import { KeycloakProfile } from 'keycloak-js';
 })
 export class ChatComponent implements OnInit {
 
-  constructor(private readonly keycloak: KeycloakService) { }
+  constructor(private authService:AuthService) { }
   public isLoggedIn = false;
-  public userProfile: KeycloakProfile | null = null;
+  public userProfile: any | null = null;
   async ngOnInit() {
-      this.userProfile = await this.keycloak.loadUserProfile();
-      
+    this.userProfile = await this.authService.loadUserProfile();
   }
 
 }

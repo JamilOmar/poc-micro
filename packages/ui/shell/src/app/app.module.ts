@@ -9,11 +9,10 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonModule} from '@angular/material/button';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import {ConfigService, CoreUiModule} from 'core-ui';
+import {AuthService,ConfigService, CoreUiModule} from 'core-ui';
 import { initializeApp } from './app.initializer';
 import { HttpClientModule } from '@angular/common/http';
 import { RouteLoaderService } from './services/route-loader.service';
-import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { HomeComponent } from './home/home.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +36,6 @@ import { BtnCellRenderer } from './shared/button-cell-renderer.component';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    KeycloakAngularModule,
     CoreUiModule.forRoot({appConf:APP_CONFIG}),
     AgGridModule.forRoot(),
     ReactiveFormsModule,
@@ -48,7 +46,7 @@ import { BtnCellRenderer } from './shared/button-cell-renderer.component';
     {
       provide: APP_INITIALIZER,
       useFactory:initializeApp,
-      deps: [ConfigService, RouteLoaderService , KeycloakService],
+      deps: [ConfigService, AuthService, RouteLoaderService],
       multi: true
     }
   ],

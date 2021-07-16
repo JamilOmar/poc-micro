@@ -40,13 +40,6 @@ module.exports = {
         // exposes: {
         //     './Component': './/src/app/app.component.ts',
         // },        
-        
-        // For hosts (please adjust)
-        // remotes: {
-        //     "mfe1": "mfe1@http://localhost:3000/remoteEntry.js",
-
-        // },
-
         shared: share({
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
@@ -54,9 +47,6 @@ module.exports = {
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "bootstrap": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "font-awesome": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "keycloak-angular": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-          "keycloak-js": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
-
           ...sharedMappings.getDescriptors()
         })
         

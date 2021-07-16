@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { SupportRoutingModule } from './support-routing.module';
 import { SupportComponent } from './support.component';
 import { ChatComponent } from './chat/chat.component';
-
+import { KeycloakAngularModule } from 'keycloak-angular';
+import { CoreUiModule } from '../../../../core/dist/core-ui/lib';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,7 @@ import { ChatComponent } from './chat/chat.component';
   ],
   imports: [
     CommonModule,
-    SupportRoutingModule
+    SupportRoutingModule,
   ]
 })
 export class SupportModule { }
